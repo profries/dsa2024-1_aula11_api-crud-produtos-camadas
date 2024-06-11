@@ -38,16 +38,19 @@ function atualizar(id, produtoAlterado) {
     if(produto) {
         produto.nome = produtoAlterado.nome;
         produto.categoria = produtoAlterado.categoria;
-        produto.preco = produtoAlterado.preco;
+        produto.preco = produtoAlterado.preco;        
     }
+    return produto;
 }
 
 function deletar(id) {
+    let produto;
     for(let indice in listaProdutos) {
         if(listaProdutos[indice].id === id) {
-            listaProdutos.splice(indice,1)
+            produto = listaProdutos.splice(indice,1)[0];
         }
-    }    
+    }
+    return produto;  
 }
 
 function pesquisarPorCategoria(categoria) {

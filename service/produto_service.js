@@ -23,8 +23,36 @@ function buscarPorId(id) {
     }
 }
 
+function atualizar(id, produto) { 
+    if(produto && produto.nome && produto.preco) {// produto != undefined
+        const produtoAtualizado =  produtoRepository.atualizar(id,produto);
+        if(produtoAtualizado) {
+            return produtoAtualizado;
+        }
+        else {
+            throw {id:404, message:"Produto nao encontrado"};
+        }    
+    }
+    else {
+        throw {id:400, message:"Produto nao possui nome ou preco"};
+    }
+
+}
+
+function deletar(id) {
+    const produto = produtoRepository.deletar(id);
+    if(produto) {
+        return produto;
+    }
+    else {
+        throw {id:404, message:"Produto nao encontrado"};
+    }
+}
+
 module.exports = {
     listar,
     inserir,
-    buscarPorId
+    buscarPorId,
+    atualizar,
+    deletar
 }
